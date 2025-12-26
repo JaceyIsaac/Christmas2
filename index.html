@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merry Christmas Mama 🎄</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Georgia", serif;
+}
+
+body {
+  background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 50%, #8b0000 100%);
+  color: #fff;
+  min-height: 100vh;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+/* Animated snowflakes */
+.snowflake {
+  position: fixed;
+  top: -10px;
+  color: #fff;
+  font-size: 1em;
+  font-family: Arial, sans-serif;
+  text-shadow: 0 0 5px #fff;
+  animation: fall linear infinite;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  background: linear-gradient(135deg, #fff 0%, #fffef8 100%);
+  color: #333;
+  border-radius: 25px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  position: relative;
+  z-index: 2;
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.header h1 {
+  color: #b30000;
+  font-size: 3rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 2px 2px 4px rgba(179,0,0,0.3); }
+  50% { text-shadow: 0 0 20px rgba(179,0,0,0.6), 0 0 30px rgba(179,0,0,0.4); }
+}
+
+.header p {
+  margin-top: 10px;
+  font-style: italic;
+  color: #2d5a3d;
+  font-size: 1.2rem;
+}
+
+.letter {
+  line-height: 1.9;
+  font-size: 1.15rem;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: rgba(179,0,0,0.05);
+  border-left: 5px solid #b30000;
+  border-radius: 10px;
+  text-align: justify;
+}
+
+.letter p {
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+.letter p:first-child {
+  font-weight: bold;
+  color: #b30000;
+  font-size: 1.3rem;
+  text-align: left;
+}
+
+.letter p:last-child {
+  text-align: justify;
+  font-style: italic;
+  margin-top: 20px;
+}
+
+.gallery-title {
+  text-align: center;
+  color: #b30000;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.gallery-container {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.gallery {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 20px 0;
+  scroll-behavior: smooth;
+}
+
+.gallery::-webkit-scrollbar {
+  height: 10px;
+}
+
+.gallery::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.gallery::-webkit-scrollbar-thumb {
+  background: #b30000;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+.gallery::-webkit-scrollbar-thumb:hover {
+  background: #8b0000;
+}
+
+.photo {
+  min-width: 280px;
+  height: 350px;
+  border-radius: 20px;
+  overflow: hidden;
+  scroll-snap-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.photo:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(179,0,0,0.4);
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.photo:hover img {
+  transform: scale(1.05);
+}
+
+.photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: white;
+  padding: 30px 15px 15px;
+  text-align: center;
+  font-style: italic;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.photo:hover .photo-caption {
+  opacity: 1;
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(179,0,0,0.8);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.nav-button:hover {
+  background: #b30000;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-button.prev {
+  left: -25px;
+}
+
+.nav-button.next {
+  right: -25px;
+}
+
+.music-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #b30000;
+  color: white;
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(179,0,0,0.5);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.music-button:hover {
+  transform: scale(1.1);
+  background: #8b0000;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  color: #b30000;
+  font-weight: bold;
+  font-size: 1.2rem;
+  animation: fadeIn 2s ease-in;
+}
+
+.heart {
+  display: inline-block;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.1); }
+  50% { transform: scale(1); }
+}
+
+/* Modal for full-size images */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.9);
+  animation: fadeIn 0.3s;
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+}
+
+.close-modal {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close-modal:hover {
+  color: #b30000;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 25px;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .letter {
+    font-size: 1rem;
+  }
+  
+  .photo {
+    min-width: 250px;
+    height: 320px;
+  }
+  
+  .nav-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>🎄 Merry Christmas Mama 🎄</h1>
+    <p>With all my love and gratitude</p>
+  </div>
+
+  <div class="letter">
+    <p>Dear Mama,</p>
+
+    <p>
+      Thank you for being strong and always there for us no matter what. I know you have 
+      your own personal struggles that you hide from us. Despite that, you still show up for us. 
+      You show strength within us; you teach us to never give up and keep going. That makes you 
+      a mother who cares, who finds ways, and who shows selflessness.
+    </p>
+
+    <p>
+      I am grateful to have you, Mama Lareza. I may be imperfect, but you still show unconditional 
+      love to us. Thank you for everything you have done for us, and may you continue to shine bright. 
+      Merry Christmas. <span class="heart">❤️</span>
+    </p>
+  </div>
+
+  <h2 class="gallery-title">📸 Our Precious Memories</h2>
+
+  <div class="gallery-container">
+    <button class="nav-button prev" onclick="scrollGallery('left')">‹</button>
+    <div class="gallery" id="photoGallery">
+      <div class="photo" onclick="openModal(this)">
+        <img id="photo1" alt="First Universal Experience">
+        <div class="photo-caption">Our First Universal Experience - The day we made magic happen together 🌟</div>
+      </div>
+      <div class="photo" onclick="openModal(this)">
+        <img id="photo2" alt="Loving & Supportive Parents">
+        <div class="photo-caption">Surrounded by Love - Your hugs have always been my safe place 💝</div>
+      </div>
+      <div class="photo" onclick="openModal(this)">
+        <img id="photo3" alt="My Dream University">
+        <div class="photo-caption">My Dream University - You believed in me when I doubted myself 🎓</div>
+      </div>
+      <div class="photo" onclick="openModal(this)">
+        <img id="photo4" alt="AirBnB Business">
+        <div class="photo-caption">Building Dreams Together - Your entrepreneurial spirit inspires me ✨</div>
+      </div>
+      <div class="photo" onclick="openModal(this)">
+        <img id="photo5" alt="Unexpected Graduation Day Attendance">
+        <div class="photo-caption">You Were There - The surprise that made my graduation perfect 🎉</div>
+      </div>
+    </div>
+    <button class="nav-button next" onclick="scrollGallery('right')">›</button>
+  </div>
+
+  <div class="footer">
+    ❄️ Made with love for the best Mama in the world ❄️
+  </div>
+</div>
+
+<button class="music-button" onclick="toggleMusic()" title="Play Christmas Music">🎵</button>
+
+<!-- Modal for full-size images -->
+<div id="imageModal" class="modal" onclick="closeModal()">
+  <span class="close-modal">&times;</span>
+  <img class="modal-content" id="modalImage">
+</div>
+
+<script>
+// Load images from /images folder
+function loadImages() {
+  // Set image sources to files in the /images folder
+  document.getElementById('photo1').src = 'images/photo1.jpg';
+  document.getElementById('photo2').src = 'images/photo2.jpg';
+  document.getElementById('photo3').src = 'images/photo3.jpg';
+  document.getElementById('photo4').src = 'images/photo4.jpg';
+  document.getElementById('photo5').src = 'images/photo5.jpg';
+}
+
+// Auto-play background music
+let audio = null;
+let isPlaying = false;
+
+// Initialize and auto-play music when page loads
+function initMusic() {
+  audio = new Audio('music/christmas-music.mp3');
+  audio.loop = true;
+  audio.volume = 0.4; // Set volume to 40%
+  
+  // Try to auto-play (some browsers require user interaction first)
+  audio.play().then(() => {
+    isPlaying = true;
+    document.querySelector('.music-button').textContent = '⏸️';
+  }).catch((error) => {
+    console.log('Auto-play prevented. User must click to play music.');
+    // Music button remains as 🎵 for user to click
+  });
+}
+
+// Load images and start music when page loads
+window.addEventListener('load', () => {
+  loadImages();
+  initMusic();
+});
+
+// Create snowflakes
+function createSnowflake() {
+  const snowflake = document.createElement('div');
+  snowflake.className = 'snowflake';
+  snowflake.textContent = '❄';
+  snowflake.style.left = Math.random() * 100 + 'vw';
+  snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+  snowflake.style.fontSize = (Math.random() * 10 + 10) + 'px';
+  snowflake.style.opacity = Math.random();
+  document.body.appendChild(snowflake);
+  
+  setTimeout(() => {
+    snowflake.remove();
+  }, 5000);
+}
+
+setInterval(createSnowflake, 300);
+
+// Gallery navigation
+function scrollGallery(direction) {
+  const gallery = document.getElementById('photoGallery');
+  const scrollAmount = 300;
+  
+  if (direction === 'left') {
+    gallery.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  } else {
+    gallery.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  }
+}
+
+// Modal functionality
+function openModal(photoElement) {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  const img = photoElement.querySelector('img');
+  
+  modal.style.display = 'block';
+  modalImg.src = img.src;
+}
+
+function closeModal() {
+  document.getElementById('imageModal').style.display = 'none';
+}
+
+// Music toggle
+function toggleMusic() {
+  if (!audio) {
+    initMusic();
+    return;
+  }
+  
+  const button = document.querySelector('.music-button');
+  
+  if (isPlaying) {
+    audio.pause();
+    button.textContent = '🎵';
+    isPlaying = false;
+  } else {
+    audio.play().then(() => {
+      button.textContent = '⏸️';
+      isPlaying = true;
+    }).catch((error) => {
+      console.error('Error playing audio:', error);
+      alert('Unable to play music. Please check if the music file exists in the music folder.');
+    });
+  }
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft') {
+    scrollGallery('left');
+  } else if (e.key === 'ArrowRight') {
+    scrollGallery('right');
+  } else if (e.key === 'Escape') {
+    closeModal();
+  }
+});
+</script>
+
+</body>
+</html>
